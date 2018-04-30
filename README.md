@@ -14,6 +14,6 @@ npm run lint # lint code
 
 ## API Key
 
-You should have the env var `MOVIEDB_API_KEY` set with your API Key. E.g.:
+You should have the env var `API_KEY` set with your API Key. E.g.:
 
-`MOVIEDB_API_KEY=xyz npm run dev`
+`API_KEY=xyz npm run dev`

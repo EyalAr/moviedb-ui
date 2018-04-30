@@ -49,8 +49,8 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin(),
     new webpack.DefinePlugin({
-      "process.env.API_KEY": JSON.stringify(process.env.API_KEY || false),
-      "process.env.API_BASE": JSON.stringify(process.env.API_BASE || false),
+      "process.env.API_KEY": JSON.stringify(process.env.API_KEY),
+      "process.env.API_BASE": JSON.stringify(process.env.API_BASE),
       "process.env.DEBUG": JSON.stringify(
         process.env.DEBUG || process.env.NODE_ENV !== "production")
     })
