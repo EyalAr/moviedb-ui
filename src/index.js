@@ -5,7 +5,7 @@ import App from "./containers/App"
 
 if (process.env.DEBUG) {
   // enable debug logs
-  localstorage.debug = "moviedb*"
+  localStorage.debug = "moviedb*"
 }
 
 const root = document.createElement("div")
