@@ -3,6 +3,7 @@ export default apiKey => {
     apiKey,
     searchResults: [],
     searchQuery: "",
-    apiKeyDialogOpen: false
+    apiKeyDialogOpen: false,
+    isPending: false
   }
 }

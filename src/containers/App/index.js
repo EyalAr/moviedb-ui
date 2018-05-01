@@ -4,7 +4,8 @@ import PropTypes from "prop-types"
 import getInitialState from "./getInitialState"
 import ApiKeyDialog from "../../ui/ApiKeyDialog"
 import AppUI from "../../ui/App"
-import search from "../../api/search";
+import PendingOverlay from "../../ui/PendingOverlay"
+import search from "../../api/search"
 
 class App extends Component {
   constructor (props) {
@@ -24,11 +25,27 @@ class App extends Component {
     return !this.state.apiKey || this.state.apiKeyDialogOpen
   }
 
+  setPending () {
+    this.setState({
+      isPending: true
+    })
+  }
+
+  unsetPending () {
+    this.setState({
+      isPending: false
+    })
+  }
+
   onSearch (query) {
+    this.setPending()
     search(query, this.state.apiKey).then(data => {
       this.setState({
         searchResults: data.results
       })
+      this.unsetPending()
+    }).catch(err => {
+      this.unsetPending()
     })
   }
 
@@ -36,9 +53,14 @@ class App extends Component {
     const {
       apiKey,
       searchQuery,
-      searchResults
+      searchResults,
+      isPending
     } = this.state
     return <Fragment>
+      {
+        this.state.isPending &&
+        <PendingOverlay/>
+      }
       {
         this.isApiKeyDialogOpen &&
         <ApiKeyDialog
