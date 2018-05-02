@@ -10,17 +10,24 @@ const cx = classnames.bind(style)
 
 const App = ({
   searchResults,
-  onSearch
+  hasMoreResults,
+  onSearch,
+  loadNextResultsPageCb
 }) => {
   return <div>
     <SearchBar onSubmit={onSearch}/>
-    <SearchResults entries={searchResults || []}/>
+    <SearchResults
+      entries={searchResults || []}
+      hasMoreEntries={hasMoreResults}
+      loadMoreEntriesCb={loadNextResultsPageCb}/>
   </div>
 }
 
 App.propTypes = {
   searchResults: PropTypes.array,
-  onSearch: PropTypes.func.isRequired
+  hasMoreResults: PropTypes.bool.isRequired,
+  onSearch: PropTypes.func.isRequired,
+  loadNextResultsPageCb: PropTypes.func.isRequired
 }
 
 App.displayName = "UI/App"

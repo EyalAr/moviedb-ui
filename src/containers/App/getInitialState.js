@@ -1,8 +1,9 @@
 export default apiKey => {
   return {
     apiKey,
-    searchResults: [],
-    searchQuery: "",
+    currentQuery: "",
+    searchResultsPages: [],
+    hasMoreResults: false,
     apiKeyDialogOpen: false,
     isPending: false
   }

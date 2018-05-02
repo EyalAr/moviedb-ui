@@ -9,7 +9,7 @@ const cx = classnames.bind(style)
 const Entry = ({
   title, date
 }) => {
-  return <div>
+  return <div className={cx("container")}>
     { title }, { date }
   </div>
 }

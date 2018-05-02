@@ -1,11 +1,13 @@
 import React, { Component, Fragment } from "react"
 import PropTypes from "prop-types"
+import update from "immutability-helper"
 
 import getInitialState from "./getInitialState"
 import ApiKeyDialog from "../../ui/ApiKeyDialog"
 import AppUI from "../../ui/App"
 import PendingOverlay from "../../ui/PendingOverlay"
 import search from "../../api/search"
+import flatten from "../../utils/flatten"
 
 class App extends Component {
   constructor (props) {
@@ -13,6 +15,7 @@ class App extends Component {
     this.state = getInitialState(process.env.API_KEY)
     this.setApiKey = this.setApiKey.bind(this)
     this.onSearch = this.onSearch.bind(this)
+    this.onNextPageRequest = this.onNextPageRequest.bind(this)
   }
 
   setApiKey (apiKey) {
@@ -39,10 +42,30 @@ class App extends Component {
 
   onSearch (query) {
     this.setPending()
+    this.setState({
+      currentQuery: query
+    })
     search(query, this.state.apiKey).then(data => {
       this.setState({
-        searchResults: data.results
+        searchResultsPages: [data.results],
+        hasMoreResults: data.page < data.total_pages
       })
+      this.unsetPending()
+    }).catch(err => {
+      this.unsetPending()
+    })
+  }
+
+  onNextPageRequest () {
+    search(
+      this.state.currentQuery,
+      this.state.apiKey,
+      this.state.searchResultsPages.length
+    ).then(data => {
+      this.setState(update(this.state, {
+        searchResultsPages: { $push: [data.results] },
+        hasMoreResults: { $set: data.page < data.total_pages }
+      }))
       this.unsetPending()
     }).catch(err => {
       this.unsetPending()
@@ -52,8 +75,8 @@ class App extends Component {
   render () {
     const {
       apiKey,
-      searchQuery,
-      searchResults,
+      searchResultsPages,
+      hasMoreResults,
       isPending
     } = this.state
     return <Fragment>
@@ -68,9 +91,10 @@ class App extends Component {
           onSubmit={this.setApiKey}/>
       }
       <AppUI
-        searchQuery={searchQuery}
-        searchResults={searchResults}
-        onSearch={this.onSearch}/>
+        searchResults={flatten(searchResultsPages)}
+        hasMoreResults={hasMoreResults}
+        onSearch={this.onSearch}
+        loadNextResultsPageCb={this.onNextPageRequest}/>
     </Fragment>
   }
 }
