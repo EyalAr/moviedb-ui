@@ -11,10 +11,24 @@ const SearchBar = ({
   onInputChange,
   onSubmit
 }) => {
+  const onKeyUp = event => {
+    if (event.key === "Enter") {
+      onSubmit()
+    }
+  }
+
   return (
-    <div>
-      <input type="text" value={query} onChange={onInputChange}/>
-      <input type="button" value="Submit" onClick={onSubmit}/>
+    <div className={cx("container")}>
+      <div className={cx("pt-input-group")}>
+        <span className={cx("pt-icon", "pt-icon-search")}></span>
+        <input
+          className={cx("pt-input")}
+          type="search"
+          placeholder="Search a movie"
+          dir="auto"
+          onChange={onInputChange}
+          onKeyUp={onKeyUp}/>
+      </div>
     </div>
   )
 }

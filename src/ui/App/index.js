@@ -14,7 +14,7 @@ const App = ({
   onSearch,
   loadNextResultsPageCb
 }) => {
-  return <div>
+  return <div className={cx("container")}>
     <SearchBar onSubmit={onSearch}/>
     <SearchResults
       entries={searchResults || []}
