@@ -17,6 +17,7 @@
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "css-loader": "^0.28.11",
+    "file-loader": "^1.1.11",
     "html-webpack-plugin": "^3.2.0",
     "jest": "^22.4.3",
     "less": "^3.0.2",
@@ -30,12 +31,17 @@
     "webpack-dev-server": "^3.1.3"
   },
   "dependencies": {
+    "@blueprintjs/core": "^2.3.1",
     "axios": "^0.18.0",
     "babel-polyfill": "^6.26.0",
     "classnames": "^2.2.5",
     "debug": "^3.1.0",
+    "immutability-helper": "^2.7.0",
+    "normalize.css": "^8.0.0",
     "prop-types": "^15.6.1",
     "react": "^16.3.2",
-    "react-dom": "^16.3.2"
+    "react-dom": "^16.3.2",
+    "react-infinite-scroller": "^1.1.4",
+    "react-transition-group": "^2.3.1"
   }
 }

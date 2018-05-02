@@ -34,7 +34,18 @@ module.exports = {
         ]
       },
       {
-        test: /\.(png|jpg|gif|svg)$/,
+        test: /node_modules\/(normalize\.css|@blueprintjs).*\.css$/,
+        use: [
+          {
+            loader: "style-loader"
+          },
+          {
+            loader: "css-loader"
+          }
+        ]
+      },
+      {
+        test: /\.(png|jpg|gif|svg|eot|woff|ttf)$/,
         use: [
           {
             loader: "url-loader",
