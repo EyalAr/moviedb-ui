@@ -26,6 +26,7 @@ const SearchBar = ({
           type="search"
           placeholder="Search a movie"
           dir="auto"
+          value={query}
           onChange={onInputChange}
           onKeyUp={onKeyUp}/>
       </div>
