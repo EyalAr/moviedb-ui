@@ -1,6 +1,10 @@
 import update from "immutability-helper"
 import generateImgUrl from "./generateImgUrl"
 
+/**
+ * augment the search results array by returning a copy of it which includes
+ * full poster image path and 'genres' array.
+ */
 export default (results, {
   imgBaseUrl,
   imgSize,
