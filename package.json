@@ -37,6 +37,7 @@
     "classnames": "^2.2.5",
     "debug": "^3.1.0",
     "immutability-helper": "^2.7.0",
+    "moment": "^2.22.1",
     "normalize.css": "^8.0.0",
     "prop-types": "^15.6.1",
     "react": "^16.3.2",

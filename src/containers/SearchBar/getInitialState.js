@@ -1,5 +1,5 @@
-export default () => {
+export default (initialQuery) => {
   return {
-    query: ""
+    query: initialQuery || ""
   }
 }

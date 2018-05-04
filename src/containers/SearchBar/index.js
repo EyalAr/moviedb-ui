@@ -7,7 +7,7 @@ import SearchBarUI from "../../ui/SearchBar"
 class SearchBar extends Component {
   constructor (props) {
     super(props)
-    this.state = getInitialState()
+    this.state = getInitialState(props.initialQuery)
     this.onInputChange = this.onInputChange.bind(this)
     this.onSubmit = this.onSubmit.bind(this)
   }
@@ -31,6 +31,7 @@ class SearchBar extends Component {
 }
 
 SearchBar.propTypes = {
+  initialQuery: PropTypes.string,
   onSubmit: PropTypes.func.isRequired
 }
 

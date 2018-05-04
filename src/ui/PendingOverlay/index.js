@@ -9,7 +9,7 @@ const cx = classnames.bind(style)
 const PendingOverlay = () => {
   return <div className={cx("container")}>
     <div className={cx("spinner")}>
-      <Spinner intent={Intent.PRIMARY}/>
+      <Spinner intent={Intent.PRIMARY} large/>
     </div>
   </div>
 }

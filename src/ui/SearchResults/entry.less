@@ -1,3 +1,55 @@
 .container {
+  position: relative;
+  display: inline-block;
+  width: calc(50% - 10px);
+  margin: 5px;
+  vertical-align: top;
+}
+
+.wrapper {
+  position: relative;
   width: 100%;
+  overflow: hidden;
+}
+
+.poster {
+  z-index: 0;
+  width: 100%;
+  transition: 200ms linear filter;
+
+  &.expanded {
+    filter: blur(10px)
+  }
+}
+
+.details {
+  z-index: 1;
+  position: absolute;
+  transform: translateY(-100%);
+  background: hsla(0, 0, 1, 0.6);
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px;
+  box-shadow: white 0 0 20px -3px;
+  max-height: 100%;
+  overflow: auto;
+  transition: 200ms linear transform;
+
+  &.expanded {
+    transform: translateY(0);
+  }
+
+  &.no-poster {
+    position: relative;
+    background: initial;
+    color: initial;
+  }
+}
+
+.detail {
+  margin: 5px 0;
+}
+
+.genre {
+  margin: 0 3px;
 }

@@ -5,6 +5,9 @@ export default apiKey => {
     searchResultsPages: [],
     hasMoreResults: false,
     apiKeyDialogOpen: false,
-    isPending: false
+    isPending: false,
+    imgBaseUrl: "",
+    imgSize: "",
+    genresMap: {}
   }
 }

@@ -20,14 +20,8 @@ const SearchResults = ({
       hasMore={hasMoreEntries}
       initialLoad={false}
       loader={ <Loader key={0}/> }>
-      { entries.map(({
-        id,
-        title,
-        overview,
-        poster_path,
-        release_date
-      }) => (
-        <Entry key={id} title={title} date={release_date}/>
+      { entries.map(entryProps => (
+        <Entry key={entryProps.id} {...entryProps}/>
       )) }
     </InfiniteScroll>
   </div>
